@@ -1,2 +1,4 @@
-# greenhouse-dt-module
-Plant Status controll for the greenhouse system
+Eseguire in successione:
+
+- docker build -t greenhouse-module .
+- docker run --rm greenhouse-module
