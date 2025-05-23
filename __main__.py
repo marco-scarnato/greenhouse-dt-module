@@ -2,6 +2,7 @@ import __utils__
 import numpy as np
 import tensorflow as tf
 import cv2
+import time
 
 from PIL import Image as PILImage
 from __config__ import CONFIG_PATH
@@ -60,12 +61,15 @@ if __name__ == "__main__":
     cnn_no_aug_model = tf.saved_model.load("cnn_no_aug")
     infer_fn = cnn_no_aug_model.signatures["serving_default"]
 
-    plants = __utils__.get_plants()
-    for plant in plants:
-        id = plant["plantId"]
-        current_status = plant["status"]
-        image_bgr = extract_plant_photo(id)
-        prediction = check_plant_photo(id, infer_fn, image_bgr)
+    while True:
+        plants = __utils__.get_plants()
+        for plant in plants:
+            id = plant["plantId"]
+            current_status = plant["status"]
+            image_bgr = extract_plant_photo(id)
+            prediction = check_plant_photo(id, infer_fn, image_bgr)
 
-        if prediction != current_status:
-            __utils__.patch_plant(id, current_status, prediction)
+            if prediction != current_status:
+                __utils__.patch_plant(id, current_status, prediction)
+        time.sleep(3600)
+    

@@ -2,11 +2,7 @@ import psycopg2
 from psycopg2 import OperationalError
 from psycopg2 import Binary
 from urllib.parse import urljoin
-
 import requests
-import numpy as np
-import cv2
-
 from __config__ import CONFIG_PATH
 
 try:
@@ -199,6 +195,7 @@ def get_plants():
 
 def patch_plant(plant_id, current_status, new_status):
     print(f"PATCH: {plant_id} in {current_status} -> {new_status}")
+    """
     api_patch_path = API_BASE + "/" + str(plant_id)
     response = requests.patch(api_patch_path, data={'statusNew': new_status})
     # Check if the response is successful
@@ -206,6 +203,7 @@ def patch_plant(plant_id, current_status, new_status):
         return response.json()
     else:
         return response.status_code
+    """
     
 
 
