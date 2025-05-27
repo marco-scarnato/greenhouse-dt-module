@@ -6,4 +6,4 @@ Eseguire in successione:
 
 - docker load -i greenhouse-module.tar 
 
-- docker run --rm greenhouse-module
+- docker run --rm -e PYTHONUNBUFFERED=1 greenhouse-module

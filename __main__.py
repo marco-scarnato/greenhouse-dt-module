@@ -7,6 +7,9 @@ import time
 from PIL import Image as PILImage
 from __config__ import CONFIG_PATH
 
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+
 try:
     from configparser import ConfigParser
 except ImportError:
@@ -70,6 +73,7 @@ if __name__ == "__main__":
             prediction = check_plant_photo(id, infer_fn, image_bgr)
 
             if prediction != current_status:
+                print(f"Plant Status ({current_status} - Update in: {prediction}")
                 patch_response = __utils__.patch_plant(id, current_status, prediction)
                 print("PATCH Result: ", patch_response)
         time.sleep(3600)
