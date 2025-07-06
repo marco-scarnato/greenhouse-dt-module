@@ -1,4 +1,4 @@
-Eseguire in successione:
+To test the execution:
 
 - docker build -t greenhouse-module .
 
